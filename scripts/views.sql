@@ -183,7 +183,7 @@ WHERE r.deleted_at IS NULL
 GROUP BY r.id, r.title, r.description, u.username, r.active_cooking_time,
          r.total_cooking_time, r.servings, r.rating, r.views
 HAVING COUNT(rev.id) >= 2 -- минимум 2 отзыва
-ORDER BY r.total_cooking_time ASC, r.rating DESC;
+ORDER BY r.total_cooking_time, r.rating DESC;
 
 
 ---------------------------------------------------------------------------------------------

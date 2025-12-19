@@ -187,13 +187,7 @@ WHERE difficulty_level = 'Быстрый'
 -- Отображение профиля пользователя
 SELECT *
 FROM public_user_profiles
-WHERE id = 123;
-
--- Подбор рецепта по критериям
-SELECT title, total_time_display, rating_display
-FROM recipe_enhanced
-WHERE difficulty_level = 'Быстрый'
-  AND estimated_cost BETWEEN 200 AND 500;
+WHERE id = 2;
 ```
 
 ### Для отчетности:
