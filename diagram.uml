@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>3f34ba70-178b-447a-815b-7e8e0b9f1ebd.SCHEMA:recipes_db.public</OriginalElement>
+  <nodes>
+    <node x="-1460.0272849705416" y="834.2400518296046">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_view</node>
+    <node x="-237.02886625376357" y="548.8942139625125">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.category</node>
+    <node x="-1087.6837044412725" y="39.699454624850716">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user</node>
+    <node x="-605.662500272501" y="790.8382757659142">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_step</node>
+    <node x="-1460.0272849705416" y="1037.8850016648516">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection</node>
+    <node x="-1460.0272849705416" y="79.30520232386368">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list</node>
+    <node x="-605.6621151597246" y="330.95015215911076">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_tag</node>
+    <node x="-1087.6837044412725" y="439.77814765509123">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe</node>
+    <node x="-1460.0272849705416" y="534.5951019943576">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.review</node>
+    <node x="-237.02886625376357" y="75.69945462485072">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.ingredient</node>
+    <node x="-237.02886625376357" y="365.4720083076027">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.tag</node>
+    <node x="-605.6621151597246" y="-280.83046994992003">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list_item</node>
+    <node x="-605.6621151597246" y="560.8942139625125">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_category</node>
+    <node x="-605.6621151597246" y="28.438526550604735">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_ingredient</node>
+    <node x="-1455.5272849705416" y="330.95015215911064">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.session</node>
+    <node x="-237.02886625376357" y="-265.2670896682299">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.unit</node>
+    <node x="-605.6621151597246" y="1044.782337569316">3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection_recipe</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.review" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="132.00028497054154" y="-1.0199435757840547E-4" />
+      <point x="-1141.0" y="650.595" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_step" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="-132.000499727499" y="-2.757659142389457E-4" />
+      <point x="-714.0" y="894.838" />
+      <point x="-714.0" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_tag" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="-131.9998848402754" y="-1.5215911076893462E-4" />
+      <point x="-625.0" y="410.95" />
+      <point x="-625.0" y="384.0" />
+      <point x="-714.0" y="384.0" />
+      <point x="-714.0" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_view" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="132.00028497054154" y="-5.182960455840657E-5" />
+      <point x="-1141.0" y="902.24" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="-132.00029555872743" y="-1.4765509126846155E-4" />
+      <point x="-1141.0" y="615.778" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.review" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="2.849705415428616E-4" y="115.99989800564242" />
+      <point x="-1328.027" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection_recipe" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection" relationship="REFERENCES">
+      <point x="-132.0" y="14.999662430683884" />
+      <point x="132.0" y="21.896998335148282" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_tag" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.tag" relationship="REFERENCES">
+      <point x="132.0" y="22.521856148491963" />
+      <point x="-132.0" y="0.0" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list_item" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.unit" relationship="REFERENCES">
+      <point x="1.151597246575875E-4" y="116.00046994992003" />
+      <point x="-473.662" y="-10.0" />
+      <point x="-105.029" y="-10.0" />
+      <point x="-1.3374623642903316E-4" y="68.00008966822992" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_ingredient" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="-131.9998848402754" y="4.734493952582852E-4" />
+      <point x="-625.0" y="144.439" />
+      <point x="-625.0" y="384.0" />
+      <point x="-714.0" y="384.0" />
+      <point x="-714.0" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list_item" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list" relationship="REFERENCES">
+      <point x="-132.0" y="0.0" />
+      <point x="-1328.0272849705416" y="-164.83046994992003" />
+      <point x="0.0" y="-80.0" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection_recipe" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="-131.9998848402754" y="-3.375693161160598E-4" />
+      <point x="-714.0" y="1124.782" />
+      <point x="-714.0" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.collection" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="132.00028497054154" y="-1.6648516520945122E-6" />
+      <point x="-1141.0" y="1117.885" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.category" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.category" relationship="REFERENCES">
+      <point x="0.0" y="92.0" />
+      <point x="-105.02886625376357" y="798.3382757659142" />
+      <point x="59.47113374623643" y="798.3382757659142" />
+      <point x="59.47113374623643" y="640.8942139625125" />
+      <point x="132.0" y="0.0" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_ingredient" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.ingredient" relationship="REFERENCES">
+      <point x="132.00011515972466" y="4.734493952582852E-4" />
+      <point x="-289.0" y="144.439" />
+      <point x="-289.0" y="155.699" />
+      <point x="-132.00013374623643" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.ingredient" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.ingredient" relationship="REFERENCES">
+      <point x="-1.3374623642903316E-4" y="-80.0" />
+      <point x="-105.029" y="58.199454624850716" />
+      <point x="44.47113374623643" y="58.199454624850716" />
+      <point x="44.47113374623643" y="155.69945462485072" />
+      <point x="132.0" y="0.0" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list_item" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.ingredient" relationship="REFERENCES">
+      <point x="132.00011515972466" y="4.699499200171431E-4" />
+      <point x="-289.0" y="-164.83" />
+      <point x="-289.0" y="155.699" />
+      <point x="-132.00013374623643" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.shop_list" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="132.00028497054154" y="-2.0232386367524668E-4" />
+      <point x="-1141.0" y="159.305" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_category" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.category" relationship="REFERENCES">
+      <point x="132.0" y="0.0" />
+      <point x="-132.0" y="0.0" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_category" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="-131.9998848402754" y="-2.1396251247551845E-4" />
+      <point x="-625.0" y="640.894" />
+      <point x="-625.0" y="384.0" />
+      <point x="-714.0" y="384.0" />
+      <point x="-714.0" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.session" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.user" relationship="REFERENCES">
+      <point x="127.50028497054154" y="-1.521591106552478E-4" />
+      <point x="-1141.0" y="386.95" />
+      <point x="-1141.0" y="167.699" />
+      <point x="-132.00029555872743" y="-4.546248507040218E-4" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_ingredient" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.unit" relationship="REFERENCES">
+      <point x="1.151597246575875E-4" y="-115.99952655060474" />
+      <point x="-473.662" y="-10.0" />
+      <point x="-105.029" y="-10.0" />
+      <point x="-1.3374623642903316E-4" y="68.00008966822992" />
+    </edge>
+    <edge source="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe_view" target="3f34ba70-178b-447a-815b-7e8e0b9f1ebd.TABLE:recipes_db.public.recipe" relationship="REFERENCES">
+      <point x="2.849705415428616E-4" y="-68.00005182960456" />
+      <point x="-1328.027" y="814.0" />
+      <point x="-955.684" y="814.0" />
+      <point x="-2.955587274300342E-4" y="175.99985234490873" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.4584329349269589" showDependencies="false" x="-879.186268829664" y="333.92091541135574" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
