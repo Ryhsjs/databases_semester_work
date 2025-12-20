@@ -83,22 +83,6 @@ SELECT r.id,
            END                           AS difficulty_level,
 
        r.servings || ' порц.'            AS servings_display,
-       -- Расчет калорийности (условно)
-       ROUND(
-               COALESCE(
-                       SUM(ri.quantity *
-                           CASE
-                               WHEN i.parent_ingredient_id IN (1, 2) THEN 250 -- мясо, птица
-                               WHEN i.parent_ingredient_id = 3 THEN 200 -- рыба
-                               WHEN i.parent_ingredient_id = 4 THEN 50 -- овощи
-                               WHEN i.parent_ingredient_id = 5 THEN 80 -- фрукты
-                               WHEN i.parent_ingredient_id = 6 THEN 150 -- молочные
-                               ELSE 100
-                               END
-                       ) / r.servings, 0
-               )
-       )                                 AS estimated_calories_per_serving,
-
        -- Рейтинг с текстовым отображением
        CASE
            WHEN r.rating IS NULL THEN 'Нет оценок'
