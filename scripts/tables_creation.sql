@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS "user"
     CONSTRAINT chk_user_deleted_at CHECK (deleted_at IS NULL OR deleted_at >= created_at)
 );
 
-
+-- сессия полностью задаётся на сервере
 CREATE TABLE IF NOT EXISTS session
 (
     id        VARCHAR(256) PRIMARY KEY,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS recipe
     id                  BIGSERIAL PRIMARY KEY,
     user_id             BIGINT       NOT NULL,
     title               VARCHAR(128) NOT NULL,
-    description         VARCHAR(512)          DEFAULT NULL,
+    description         VARCHAR(512) NOT NULL DEFAULT '',
     active_cooking_time SMALLINT     NOT NULL,
     total_cooking_time  SMALLINT     NOT NULL,
     servings            SMALLINT     NOT NULL,
@@ -41,9 +41,15 @@ CREATE TABLE IF NOT EXISTS recipe
     deleted_at          TIMESTAMPTZ           DEFAULT NULL,
 
     CONSTRAINT chk_recipe_title_length CHECK (LENGTH(title) >= 3),
+
+    -- максимальное время сутки, для случаев с запасом, для учета тушения, копчения или маринования
+    -- я реально видела такие рецепты на просторах интернета...
     CONSTRAINT chk_recipe_active_cooking_time CHECK (active_cooking_time > 0 AND active_cooking_time <= 1440),
     CONSTRAINT chk_recipe_total_cooking_time CHECK (total_cooking_time >= active_cooking_time),
-    CONSTRAINT chk_recipe_servings CHECK (servings > 0 AND servings <= 20),
+
+    -- Если пользователь захочет указать не прям порции, а количество приготовленных в шт.
+    -- (маленькие печеньки и пирожные, конфеты и тп)
+    CONSTRAINT chk_recipe_servings CHECK (servings > 0 AND servings <= 40),
     CONSTRAINT chk_recipe_views CHECK (views >= 0),
     CONSTRAINT chk_recipe_rating CHECK (rating >= 1 AND rating <= 5),
     CONSTRAINT chk_recipe_updated_at CHECK (updated_at IS NULL OR updated_at > created_at),
@@ -56,9 +62,9 @@ CREATE TABLE IF NOT EXISTS recipe_step
     recipe_id    BIGINT        NOT NULL,
     step_order   SMALLINT      NOT NULL,
     instructions VARCHAR(2048) NOT NULL,
-    image_url    VARCHAR(512) DEFAULT NULL,
-    created_at   TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    deleted_at   TIMESTAMPTZ           DEFAULT NULL,
+    image_url    VARCHAR(512)           DEFAULT NULL,
+    created_at   TIMESTAMPTZ   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at   TIMESTAMPTZ            DEFAULT NULL,
 
     CONSTRAINT chk_recipe_step_deleted_at CHECK (deleted_at IS NULL OR deleted_at >= created_at)
 );
@@ -77,10 +83,10 @@ CREATE TABLE IF NOT EXISTS collection
 CREATE TABLE IF NOT EXISTS collection_recipe
 (
     id            BIGSERIAL PRIMARY KEY,
-    collection_id BIGINT NOT NULL,
-    recipe_id     BIGINT NOT NULL,
-    created_at    TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    deleted_at    TIMESTAMPTZ DEFAULT NULL,
+    collection_id BIGINT      NOT NULL,
+    recipe_id     BIGINT      NOT NULL,
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at    TIMESTAMPTZ          DEFAULT NULL,
 
     CONSTRAINT chk_collection_recipe_deleted_at CHECK (deleted_at IS NULL OR deleted_at >= created_at)
 );
@@ -107,11 +113,12 @@ CREATE TABLE IF NOT EXISTS recipe_view
     user_id    BIGINT               DEFAULT NULL,
     recipe_id  BIGINT      NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+    -- удаления нет для целостности данных
 );
 
 CREATE TABLE IF NOT EXISTS unit
 (
-    id         SERIAL PRIMARY KEY,
+    id         SMALLSERIAL PRIMARY KEY,
     name       VARCHAR(256) NOT NULL UNIQUE,
     created_at TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ           DEFAULT NULL,
@@ -121,9 +128,9 @@ CREATE TABLE IF NOT EXISTS unit
 
 CREATE TABLE IF NOT EXISTS ingredient
 (
-    id                   SERIAL PRIMARY KEY,
+    id                   SMALLSERIAL PRIMARY KEY,
     name                 VARCHAR(256) NOT NULL UNIQUE,
-    parent_ingredient_id INT DEFAULT NULL,
+    parent_ingredient_id SMALLINT              DEFAULT NULL,
     created_at           TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at           TIMESTAMPTZ           DEFAULT NULL,
 
@@ -133,13 +140,13 @@ CREATE TABLE IF NOT EXISTS ingredient
 CREATE TABLE IF NOT EXISTS recipe_ingredient
 (
     id            BIGSERIAL PRIMARY KEY,
-    recipe_id     BIGINT         NOT NULL,
-    ingredient_id INT            NOT NULL,
-    quantity      NUMERIC(10, 3) NOT NULL,
-    unit_id       INT            NOT NULL,
-    notes         VARCHAR(256)   NOT NULL DEFAULT '',
-    created_at    TIMESTAMPTZ    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    deleted_at    TIMESTAMPTZ             DEFAULT NULL,
+    recipe_id     BIGINT        NOT NULL,
+    ingredient_id SMALLINT      NOT NULL,
+    quantity      NUMERIC(5, 2) NOT NULL,
+    unit_id       SMALLINT      NOT NULL,
+    notes         VARCHAR(256)  NOT NULL DEFAULT '',
+    created_at    TIMESTAMPTZ   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at    TIMESTAMPTZ            DEFAULT NULL,
 
     CONSTRAINT chk_recipe_ingredient_quantity CHECK (quantity > 0 AND quantity <= 1000),
     CONSTRAINT chk_recipe_ingredient_deleted_at CHECK (deleted_at IS NULL OR deleted_at >= created_at)
@@ -147,10 +154,10 @@ CREATE TABLE IF NOT EXISTS recipe_ingredient
 
 CREATE TABLE IF NOT EXISTS category
 (
-    id                 SERIAL PRIMARY KEY,
+    id                 SMALLSERIAL PRIMARY KEY,
     name               VARCHAR(256) NOT NULL UNIQUE,
     description        VARCHAR(512) NOT NULL DEFAULT '',
-    parent_category_id INT                   DEFAULT NULL,
+    parent_category_id SMALLINT              DEFAULT NULL,
     created_at         TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at         TIMESTAMPTZ           DEFAULT NULL,
 
@@ -161,7 +168,7 @@ CREATE TABLE IF NOT EXISTS recipe_category
 (
     id          BIGSERIAL PRIMARY KEY,
     recipe_id   BIGINT      NOT NULL,
-    category_id INT         NOT NULL,
+    category_id SMALLINT    NOT NULL,
     created_at  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at  TIMESTAMPTZ          DEFAULT NULL,
 
@@ -182,13 +189,13 @@ CREATE TABLE IF NOT EXISTS shop_list
 CREATE TABLE IF NOT EXISTS shop_list_item
 (
     id            BIGSERIAL PRIMARY KEY,
-    shop_list_id  BIGINT         NOT NULL,
-    ingredient_id INT            NOT NULL,
-    quantity      NUMERIC(10, 3) NOT NULL DEFAULT 1,
-    unit_id       INT            NOT NULL,
-    completed     BOOLEAN        NOT NULL DEFAULT FALSE,
-    created_at    TIMESTAMPTZ    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    deleted_at    TIMESTAMPTZ             DEFAULT NULL,
+    shop_list_id  BIGINT        NOT NULL,
+    ingredient_id SMALLINT      NOT NULL,
+    quantity      NUMERIC(5, 2) NOT NULL DEFAULT 1,
+    unit_id       SMALLINT      NOT NULL,
+    completed     BOOLEAN       NOT NULL DEFAULT FALSE,
+    created_at    TIMESTAMPTZ   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at    TIMESTAMPTZ            DEFAULT NULL,
 
     CONSTRAINT chk_shop_list_item_quantity CHECK (quantity > 0 AND quantity <= 1000),
     CONSTRAINT chk_shop_list_item_deleted_at CHECK (deleted_at IS NULL OR deleted_at >= created_at)
@@ -196,7 +203,7 @@ CREATE TABLE IF NOT EXISTS shop_list_item
 
 CREATE TABLE IF NOT EXISTS tag
 (
-    id         SERIAL PRIMARY KEY,
+    id         SMALLSERIAL PRIMARY KEY,
     name       VARCHAR(256) NOT NULL UNIQUE,
     created_at TIMESTAMPTZ  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ           DEFAULT NULL,
@@ -208,7 +215,7 @@ CREATE TABLE IF NOT EXISTS recipe_tag
 (
     id         BIGSERIAL PRIMARY KEY,
     recipe_id  BIGINT      NOT NULL,
-    tag_id     INT         NOT NULL,
+    tag_id     SMALLINT    NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ          DEFAULT NULL,
 
